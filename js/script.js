@@ -51,5 +51,12 @@ const root = new Vue({
             },
         ]
     },
-    methods:{}
+    methods:{
+        goNext(){
+            this.currentIndex++
+        },
+        goPrev(){
+            this.currentIndex--
+        }
+    }
 })
