@@ -1,38 +1,46 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.4/dist/vue.js"></script>
     <title>Carousel</title>
 </head>
+
 <body>
-    <div class="container">
+    <div class="container" id="root">
         <div id="carousel">
-            <div id="images-container">
-                <div class="image d-active">
-                    <img src="http://www.viaggiareonline.it/wp-content/uploads/2014/11/sweden_148857365.jpg" alt="" class="img">       
+            <div id="images-container" v-for="(pic, index) in pictures">
+                <div class="image" :class="{'d-active' : currentIndex === index}" >
+                    <img :src="pic.url" alt=""
+                        class="img">
                     <div class="photo-description">
-                        <h3>Svezia</h3>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam.</p>
+                        <h3>{{pic.title}}</h3>
+                        <p>{{pic.description}}</p>
                     </div>
-                   </div>
+                </div>
             </div>
             <div class="buttons">
                 <i class="fa-solid fa-circle-left" id="previous"></i>
-                <i class="fa-solid fa-circle-right" id="next"></i>     
+                <i class="fa-solid fa-circle-right" id="next"></i>
             </div>
             <div id="thumbnails-container">
-                <img class="thumbnails-img thumbnails-d-active" src="http://www.viaggiareonline.it/wp-content/uploads/2014/11/sweden_148857365.jpg" alt="">
+                <img v-for="(pic, index) in pictures" class="thumbnails-img"
+                    :class="{'thumbnails-d-active' : currentIndex === index}" :src="pic.url" :alt="pic.title">
             </div>
         </div>
-            
+
     </div>
 
     <script src="js/script.js"></script>
 </body>
+
 </html>
